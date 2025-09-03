@@ -1,0 +1,53 @@
+class Solution(object):
+    def check(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        
+        i = 0
+        x = 0
+        while i < len(nums)-1:
+            
+            if nums[i+1] < nums[i]:
+                x = i
+                break
+            else:
+                i += 1
+
+
+        sorted_nums = sorted(nums)
+
+        for i in range(0 , len(nums)):
+            if nums[i] !=  sorted_nums[(i + x) % len(nums)]:
+                return False
+        
+        return True'''
+
+        Key Insight: In a sorted and rotated array, there can be at most 1 inversion point.
+
+Inversion: A position where nums[i] > nums[i+1]
+If the array is purely sorted: 0 inversions
+If the array is sorted and rotated: exactly 1 inversion (at the rotation point)
+If there are 2+ inversions: the array cannot be sorted and rotated
+The algorithm counts:
+
+Regular inversions: nums[i-1] > nums[i]
+Wraparound inversion: nums[n-1] > nums[0] (connecting end to start)
+
+"""
+
+        i = 0
+        count = 0
+        n = len(nums)
+        while i < n-1:
+            
+            if nums[i+1] < nums[i]:
+                count += 1
+                i += 1
+            else:
+                i += 1
+
+        if nums[n-1] > nums[0]:
+            count += 1
+
+        return count <= 1    
