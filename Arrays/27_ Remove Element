@@ -1,0 +1,35 @@
+Intuition
+
+Instead of building a brand-new array without the val elements, why not just overwrite the array we already have
+We can slide all the “keep” elements to the front, and forget about the rest — exactly what the problem allows us to do.
+Approach
+
+We use a pointer k to mark the next position where a keepable element should go.
+
+Start with k = 0.
+Loop through the array:
+If the current number is not val, put it at position k and move k forward.
+If it is val, skip it.
+At the end, the first k positions are the filtered array, and k is the new length.
+The cool part? We never need to shift everything multiple times — each element is handled exactly once.
+
+Complexity
+
+Time complexity:
+
+O(n) — We check each element once.
+Space complexity:
+
+O(1) — No extra arrays, just a counter.
+
+index = 0
+
+        for i in range(len(nums)):
+            if nums[i] != val:
+                nums[index] = nums[i]
+                index += 1
+
+        return index   
+
+
+
