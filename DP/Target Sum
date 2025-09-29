@@ -1,24 +1,36 @@
 class Solution(object):
-    def targetSum(self, nums, sum, n):
-
-        if sum == 0:
-            return 1
+    def targetSum(self, nums, target, n, dp):
         if n == 0:
-            return 0
-        if nums[n-1] <= sum:
+            return 1 if target == 0 else 0      #    Subsets Of [0]{} (Empty Set, Sum = 0)
+                                                #   {0} (Element Itself, Also Sum = 0)
 
-            take = self.targetSum(nums, sum - nums[n-1], n-1)
-            nottake = self.targetSum(nums, sum, n-1)
-            return take + nottake
+        if dp[n][target] != -1:
+            return dp[n][target]
+
+        if nums[n-1] <= target:
+            take = self.targetSum(nums, target - nums[n-1], n-1, dp)
+            nottake = self.targetSum(nums, target, n-1, dp)
+            dp[n][target] = take + nottake
         else:
-            return self.targetSum(nums, sum, n-1)
-    
+            dp[n][target] = self.targetSum(nums, target, n-1, dp)
+
+        return dp[n][target]
+
     def findTargetSumWays(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: int
-        """
+        total = sum(nums)
+
+        # if target is impossible
+           #    Subsets of [0]{} (empty set, sum = 0)
+           #   {0} (element itself, also sum = 0)
+        if abs(target) > total or (target + total) % 2 != 0:
+            return 0
+
+        sum1 = (target + total) // 2
+        n = len(nums)
+
+        dp = [[-1 for _ in range(sum1+1)] for _ in range(n+1)]
+        return self.targetSum(nums, sum1, n, dp)
+
         
         # ARR --> 1+1+1+1-1 = TARGET(3)
         #           S1(1+1+1+1) - S2(1) = TARGET(3)
@@ -30,6 +42,4 @@ class Solution(object):
         #           COUNT ALL SUBSET WHERE SUM = S1
 
 
-        sum1 = (target + sum(nums)) // 2
-
-        return self.targetSum(nums, sum1, len(nums))
+        
