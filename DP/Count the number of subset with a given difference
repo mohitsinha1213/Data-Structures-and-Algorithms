@@ -1,0 +1,27 @@
+def subsetwithgivendiff(arr, sum, n):  
+    if sum == 0:
+        return 1
+    if n == 0:
+        return 0
+    
+    if arr[n-1] <= sum:
+        take = subsetwithgivendiff(arr, sum-arr[n-1], n-1)
+        nottake = subsetwithgivendiff(arr, sum, n-1)
+        count = take + nottake
+        return count
+    else:
+        return subsetwithgivendiff(arr, sum, n-1)
+            
+            
+    
+arr = [1,1,2,3]
+n = 4
+diff = 1
+
+sum1 = (diff + sum(arr)) // 2
+
+#dp = [[-1 for _ in range(sum+1)]for _ in range(n+1)]
+         
+answer = subsetwithgivendiff(arr, sum1, n)   
+
+print(answer)
