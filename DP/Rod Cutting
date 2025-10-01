@@ -1,0 +1,24 @@
+def rodCutting(price, length, L, n):
+    
+    if L == 0 or n == 0:
+        return 0
+    
+    if length[n-1] <= L:
+        
+        take = price[n-1] + rodCutting(price, length, L - length[n-1], n)
+        nottake = rodCutting(price, length, L, n-1)
+        
+        return max(take, nottake)
+    
+    else:
+        return rodCutting(price, length, L, n-1)
+    
+                
+            
+    
+price = [1, 5, 8, 9, 10]
+length = [1,3,5,7,9]
+L = 9
+  
+answer = rodCutting(price, length, L, len(price))
+print(answer)
