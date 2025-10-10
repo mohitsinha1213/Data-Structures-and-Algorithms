@@ -1,0 +1,43 @@
+class Solution(object):
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        # answer = defaultdict(int)
+
+        # for i in nums:
+        #     answer[i] += 1
+        # ans = []
+        # n = len(nums)
+        # for key, value in answer.items():
+        #     if value > n/3:
+        #         ans.append(key)
+
+        # return ans            
+
+        count1, count2 = 0, 0
+        element1, element2 = float('-inf'), float('-inf')
+
+
+        for i in nums:
+            if count1 == 0 and i != element2:
+                element1 = i
+                count1 = 1
+            elif count2 == 0 and i != element1:
+                element2 = i
+                count2 = 1
+            elif i == element1:
+                count1 += 1
+            elif i == element2:
+                count2 += 1
+            else:
+                count1 -= 1
+                count2 -= 1               
+
+        answer = []
+        if nums.count(element1) > len(nums) // 3:
+            answer.append(element1)
+        if nums.count(element2) > len(nums) // 3:
+            answer.append(element2)         
+        return answer    
