@@ -1,0 +1,43 @@
+class Solution(object):
+    def reverseWords(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+
+        # n = len(s)
+        # i = 0
+        # word = ""
+        # answer = []
+        # while i < n:
+        #     if s[i] == " ":
+        #         if word != "":
+        #             answer.append(word)
+        #         word = ""
+
+        #     if s[i] != " ":
+        #         word += s[i]       
+
+        #     i += 1
+
+        # if word != "":
+        #     answer.append(word)    
+
+        # i = len(answer)-1
+
+
+        # word = ""
+        # while i > 0:
+        #     word += answer[i]
+        #     word += " "
+        #     i -= 1
+
+        # word += answer[0]
+
+        # return word  
+
+        word = s.split()         #### split function creates a List of words in s even it has spaces
+        word.reverse()
+        return " ".join(word)     #### .join converts word List to String with separator " ".
+            
+
