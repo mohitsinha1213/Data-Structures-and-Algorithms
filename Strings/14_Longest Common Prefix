@@ -1,0 +1,41 @@
+class Solution(object):
+    from collections import defaultdict
+    def longestCommonPrefix(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        
+        # checker = strs[0]
+        # answer = ""
+        # i = 0
+        # while i < len(checker):
+        #     j = 1
+        #     while j < len(strs):
+                
+        #         if len(strs[j]) >= len(checker):
+        #             if strs[j][i] != checker[i]:
+        #                 return answer
+        #         j += 1    
+
+        #     answer += checker[i]
+        #     i += 1 
+
+        # return answer    
+
+        ## Concept was good but answer was wrong think about Minlength
+
+        min_length = float("inf")
+
+        for i in strs:
+            if len(i) < min_length:
+                min_length = len(i)
+        i = 0
+        while i < min_length:
+            for j in strs:
+                if j[i] != strs[0][i]:
+                    return j[:i]
+
+            i += 1
+
+        return strs[0][:i]                    
