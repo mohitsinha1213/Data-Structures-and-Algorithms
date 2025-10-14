@@ -1,0 +1,14 @@
+class Solution(object):
+    from collections import Counter
+    def frequencySort(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        answer = ""
+        map1 = Counter(s).most_common()
+        for key, value in map1:
+            answer += key*value
+
+        return answer    
+
