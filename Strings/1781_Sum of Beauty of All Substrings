@@ -1,0 +1,19 @@
+class Solution(object):
+    def beautySum(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+
+        answer = [0]*26  
+        sum = 0
+        for i in range(len(s)):
+            answer = [0]*26
+            for j in range(i,len(s)):
+                answer[ord(s[j]) - ord("a")] += 1
+                maxCount = max(answer)
+                minCount = min([f for f in answer if f > 0])       
+                sum += abs(maxCount - minCount)
+
+        return sum    
+                
