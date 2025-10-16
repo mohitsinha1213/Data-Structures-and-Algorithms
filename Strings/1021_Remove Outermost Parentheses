@@ -1,0 +1,46 @@
+class Solution(object):
+    def removeOuterParentheses(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        
+        # count = 0
+        # answer = ""
+        # start = 0
+        # for i in range(len(s)):
+        #     if s[i] == "(" and count == 0:
+        #         start = i
+        #         count += 1
+
+        #     elif s[i] == "(":
+        #         count += 1
+
+        #     elif s[i] == ")":
+        #         count -= 1    
+            
+        #     if count == 0:
+        #         answer += s[start+1:i]
+
+        # return answer     
+
+        answer = []
+        count = 0
+        for i in s:
+            if i == "(" and count == 0:
+                count += 1
+            
+            elif i == "(" and count != 0:
+                count += 1
+                answer.append(i)
+
+            else:
+                count -= 1
+                if count != 0:
+                    answer.append(i)
+
+
+        return "".join(answer)        
+
+                
+        
