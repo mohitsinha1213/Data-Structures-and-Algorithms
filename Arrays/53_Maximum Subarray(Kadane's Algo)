@@ -1,7 +1,16 @@
 class Solution(object):
     def maxSubArray(self, nums):
         
+        # maxSum = -float('inf')
 
+        # for i in range(len(nums)):
+        #     sum = 0
+        #     for j in range(i, len(nums)):
+        #         sum += nums[j]
+        #         maxSum = max(maxSum, sum)
+
+
+        # return maxSum   ----> TC = O(N**2)
         sum = 0
         maxSum = -float('inf')
 
@@ -13,4 +22,4 @@ class Solution(object):
             if sum < 0:    ## anytime my sum goes less then zero its useless so set it back to 0
                 sum = 0
 
-        return maxSum    
+        return maxSum    #### ----> TC = O(N)
